@@ -1,1 +1,1 @@
-# Adatbazis-labor
+# Adatbázis-labor
