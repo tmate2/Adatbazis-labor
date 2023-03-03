@@ -59,7 +59,7 @@ select cim from konyvtar.konyv where tema in ('természettudomány', 'krimi','ho
 select vezeteknev || ' ' || keresztnev, floor(months_between(sysdate,szuletesi_datum)/12), cim  from konyvtar.tag where cim not like '_____Debrecen%' and not floor(months_between(sysdate,szuletesi_datum)/12) between 20 and 30 order by extract(year from szuletesi_datum) desc, concat(vezeteknev,keresztnev) desc;
 
 -- 30 evnel idosebb tagok ev szerint csokkeno, honap szerint novekvobe rendezve
-select vezeteknev, ' ', keresztnev, to_char(szuletesi_datum,'yyyy - mm') from konyvtar.tag where floor(months_between(sysdate,beiratkozasi_datum)/12) > 30 order by extract(year from szuletesi_datum) desc,extract(month from szuletesi_datum) asc;
+select vezeteknev || ' ' || keresztnev, to_char(szuletesi_datum,'yyyy - mm') from konyvtar.tag where floor(months_between(sysdate,beiratkozasi_datum)/12) > 30 order by extract(year from szuletesi_datum) desc,extract(month from szuletesi_datum) asc;
 
 -- olyan ferfi tagok, akok 1980.03.02 elott szulettek
-select vezeteknev, ' ', keresztnev, to_char(szuletesi_datum,'yyyy.mm.dd') from konyvtar.tag where szuletesi_datum < to_date('1980.03.02', 'yyyy.mm.dd.') and nem = 'f'; 
+select vezeteknev || ' ' || keresztnev, to_char(szuletesi_datum,'yyyy.mm.dd') from konyvtar.tag where szuletesi_datum < to_date('1980.03.02', 'yyyy.mm.dd.') and nem = 'f'; 
